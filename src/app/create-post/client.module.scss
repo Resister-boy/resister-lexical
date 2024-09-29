@@ -1,0 +1,19 @@
+.lexical-shell {
+  width: 100%;
+  min-height: 480px;
+  padding: 24px;
+  position: relative;
+
+  .content-editable {
+    outline: none;
+  }
+
+  .placeholder {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    user-select: none;
+    pointer-events: none;
+    color: #cccccc;
+  }
+}
