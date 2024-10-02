@@ -1,0 +1,19 @@
+.richtext-container {
+  width: 100%;
+  height: 100%;
+
+  .richtext {
+    outline: none;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+  }
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  user-select: none;
+  pointer-events: none;
+  color: #cccccc;
+}

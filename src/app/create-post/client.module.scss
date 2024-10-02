@@ -2,18 +2,22 @@
   width: 100%;
   min-height: 480px;
   padding: 24px;
-  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
 
-  .content-editable {
-    outline: none;
+  .wrapper {
+    flex: 1;
+    height: 100%;
+    border: 1px solid #000;
+    position: relative;
   }
+}
 
-  .placeholder {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    user-select: none;
-    pointer-events: none;
-    color: #cccccc;
-  }
+.content-editable {
+  outline: none;
+  height: 100%;
+  width: 100%;
+  min-height: 480px;
 }

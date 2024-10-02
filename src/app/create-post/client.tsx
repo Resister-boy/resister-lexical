@@ -1,19 +1,16 @@
 "use client";
-import React, { ComponentProps, FC } from "react";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import React, { ComponentProps } from "react";
 import styles from "@/app/create-post/client.module.scss";
 import classNames from "classnames/bind";
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalNodes } from "@/nodes";
-import MarkdownPlugin from "@/plugins/markdownPlugin";
+import RichTextPlugin from "@/plugins/richTextPlugin";
+import ShareStateSenderPlugin from "@/plugins/shareStateSenderPlugin";
+import ShareStateReceiverPlugin from "@/plugins/shareStateReceiverPlugin";
 
-const cn = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
-const CreatePostClient: FC = (): JSX.Element => {
+const CreatePostClient = () => {
   const initialConfig: ComponentProps<typeof LexicalComposer>["initialConfig"] =
     {
       namespace: "resister-lexical",
@@ -23,20 +20,24 @@ const CreatePostClient: FC = (): JSX.Element => {
       },
     };
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <div className={cn("lexical-shell")}>
-        <RichTextPlugin
-          contentEditable={
-            <ContentEditable className={cn("content-editable")} />
-          }
-          placeholder={<div className={cn("placeholder")}>글을 써주세요</div>}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
+    <section className={cx("lexical-shell")}>
+      <div className={cx("wrapper")}>
+        <LexicalComposer initialConfig={initialConfig}>
+          <div className={cx("content-editable")}>
+            <RichTextPlugin />
+          </div>
+          <ShareStateSenderPlugin />
+        </LexicalComposer>
       </div>
-      <AutoFocusPlugin />
-      <MarkdownPlugin />
-      <HistoryPlugin />
-    </LexicalComposer>
+      <div className={cx("wrapper")}>
+        <LexicalComposer initialConfig={initialConfig}>
+          <div className={cx("content-editable")}>
+            <RichTextPlugin />
+          </div>
+          <ShareStateReceiverPlugin />
+        </LexicalComposer>
+      </div>
+    </section>
   );
 };
 

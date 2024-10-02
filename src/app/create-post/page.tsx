@@ -1,16 +1,17 @@
 import React from "react";
-import { FC } from "react";
-
 import classNames from "classnames/bind";
-import CreatePostClient from "@/app/create-post/client";
 import styles from "@/app/create-post/page.module.scss";
+import CreatePostClient from "@/app/create-post/client";
+import LexicalStateShareProvider from "@/context/lexicalStateShareContext/LexicalStateShareProvider";
 
 const cn = classNames.bind(styles);
 
-const CreatePost: FC = (): JSX.Element => {
+const CreatePost = (): JSX.Element => {
   return (
     <main className={cn("container")}>
-      <CreatePostClient />
+      <LexicalStateShareProvider>
+        <CreatePostClient />
+      </LexicalStateShareProvider>
     </main>
   );
 };
